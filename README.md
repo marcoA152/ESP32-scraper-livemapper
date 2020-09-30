@@ -37,3 +37,6 @@ the code asks for the page every 15min, it is about 44Kb, i don't think is a big
 
 
 have fun!
+
+https://www.instructables.com/id/ESP32-Scraper-parser-mailer-and-Live-Mapper/
+
