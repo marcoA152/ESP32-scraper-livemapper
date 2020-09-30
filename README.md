@@ -37,21 +37,23 @@ The core of this scraper is in http tab:
 
     ind = payload.indexOf("TOSstation_number");  //get the position (ind) from where start to count commas
     String my_var = getValue_ind(payload, ',', 8); //where 8 is the eighth cell defined by commas (separator)
+    
 and the getValue_ind function is in the main tab
 
-String getValue_ind(String data, char separator, int index) {
-  int found = 0;
-  int strIndex[] = {0, -1};
-  int maxIndex = data.length() - 1;
-  for (int i = ind; i <= maxIndex && found <= index; i++) { //from ind position
-    if (data.charAt(i) == separator || i == maxIndex) {
-      found++;
-      strIndex[0] = strIndex[1] + 1;
-      strIndex[1] = (i == maxIndex) ? i + 1 : i;
-    }
-  }
-  return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
-} 
+    String getValue_ind(String data, char separator, int index) {
+      int found = 0;
+      int strIndex[] = {0, -1};
+      int maxIndex = data.length() - 1;
+      for (int i = ind; i <= maxIndex && found <= index; i++) { //from ind position
+        if (data.charAt(i) == separator || i == maxIndex) {
+          found++;
+          strIndex[0] = strIndex[1] + 1;
+          strIndex[1] = (i == maxIndex) ? i + 1 : i;
+        }
+      }
+      return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+    } 
+
 adapted from https://stackoverflow.com/a/14824108
 
 the code asks for the page every 15min, it is about 44Kb, i don't think is a big load for the servers.. To avoid too much scrolling i have divided the program in different functions, read the comments
