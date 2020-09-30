@@ -58,12 +58,14 @@ adapted from https://stackoverflow.com/a/14824108
 
 the code asks for the page every 15min, it is about 44Kb, i don't think is a big load for the servers.. To avoid too much scrolling i have divided the program in different functions, read the comments
 
-here the code pasting is really a mess... i put the .ino files directly.
 
 i've used the tabs feature of the arduino IDE so i have different .ino files.
 
 this is the latest version of the code, there's a lot of efforts, so i'll appreciate any suggestion!
-for the straightening of the led brightness for low values, for the "map" function for floating point variables and for the use of the second core on the ESP32, i have only a lot of fun so read on the comments on the .ino files on github!
+
+- for the straightening of the led brightness for low values, 
+- for the "map" function for floating point variables 
+- and for the use of the second core on the ESP32, read on the comments on the .ino files on github!
 
 as upload settings i've used Tools: Partition Scheme: NO OTA to have more space for this huge code
 
