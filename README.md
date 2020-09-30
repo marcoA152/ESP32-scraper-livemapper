@@ -33,10 +33,38 @@ online i have found only vapourous tutorials that uses external sites to parse d
 
 so if you view the SIR page source can understand how its works: luckily they uses a "comma separated like" values for display their data, so with this code I search for an hydrographic station (code TOSnumber) and count the number of commas (as separator) that contain the value i want (and store it as variable), then remap it as led brightness and time in millis for "variation level" blinking
 
+The core of this scraper is in http tab:
+
+    ind = payload.indexOf("TOSstation_number");  //get the position (ind) from where start to count commas
+    String my_var = getValue_ind(payload, ',', 8); //where 8 is the eighth cell defined by commas (separator)
+and the getValue_ind function is in the main tab
+
+String getValue_ind(String data, char separator, int index) {
+  int found = 0;
+  int strIndex[] = {0, -1};
+  int maxIndex = data.length() - 1;
+  for (int i = ind; i <= maxIndex && found <= index; i++) { //from ind position
+    if (data.charAt(i) == separator || i == maxIndex) {
+      found++;
+      strIndex[0] = strIndex[1] + 1;
+      strIndex[1] = (i == maxIndex) ? i + 1 : i;
+    }
+  }
+  return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+} 
+adapted from https://stackoverflow.com/a/14824108
+
 the code asks for the page every 15min, it is about 44Kb, i don't think is a big load for the servers.. To avoid too much scrolling i have divided the program in different functions, read the comments
 
+here the code pasting is really a mess... i put the .ino files directly.
+
+i've used the tabs feature of the arduino IDE so i have different .ino files.
+
+this is the latest version of the code, there's a lot of efforts, so i'll appreciate any suggestion!
+for the straightening of the led brightness for low values, for the "map" function for floating point variables and for the use of the second core on the ESP32, i have only a lot of fun so read on the comments on the .ino files on github!
+
+as upload settings i've used Tools: Partition Scheme: NO OTA to have more space for this huge code
 
 have fun!
-
 https://www.instructables.com/id/ESP32-Scraper-parser-mailer-and-Live-Mapper/
 
